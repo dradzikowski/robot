@@ -120,4 +120,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR_STATIC, 'static'),
 )
 
-
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
