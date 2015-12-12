@@ -21,7 +21,7 @@ urlpatterns = [
 ]
 """
 from django.conf.urls import *
-from robotapp.views import home, insert, find
+from robotapp.views import insert, find
 
 urlpatterns = patterns('',
     (r'^insert/$', insert),
