@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MAIN_PROJECT = os.path.dirname(__file__)
+BASE_DIR_STATIC = os.path.dirname(os.path.abspath(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -102,8 +104,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+#STATIC_ROOT = os.path.join(MAIN_PROJECT, 'static')
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+#STATIC_URL = '/static/'
+
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'robotapp/static'),
+    os.path.join(BASE_DIR_STATIC, 'static'),
 )
+
+
