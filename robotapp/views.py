@@ -5,6 +5,11 @@ from django.views.decorators.csrf import csrf_exempt
 from pymongo import MongoClient
 from rest_framework.decorators import api_view
 
+@api_view(["GET"])
+@csrf_exempt
+def index(request):
+    return render_to_response('index.html')
+
 @api_view(["POST"])
 @csrf_exempt
 def find(request):
