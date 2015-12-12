@@ -24,6 +24,7 @@ from django.conf.urls import *
 from robotapp.views import insert, find
 
 urlpatterns = patterns('',
+    url(r'^docs/', include('rest_framework_swagger.urls')),
     (r'^insert/$', insert),
     (r'^find/$', find),
 )
