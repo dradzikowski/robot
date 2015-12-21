@@ -41,6 +41,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework_swagger',
     'robotapp',
+    'oauth2_provider',
+    'rest_framework',
+    'corsheaders',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,6 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
 
 ROOT_URLCONF = 'robot.urls'
@@ -114,3 +118,53 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': ['read', 'write', 'groups']
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        # ...
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        }
+    },
+    'loggers': {
+        # ....
+        'oauthlib': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        }
+    },
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
