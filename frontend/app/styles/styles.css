@@ -1,0 +1,126 @@
+
+.trip-box-frame {
+    position: relative;
+    width: 256px;
+    height: 384px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.trip-box-loaded {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #000;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.trip-box-menu {
+    /*display: none;*/
+    top: 0; left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    padding: 16px;
+}
+
+.trip-box-menu:hover {
+    opacity: 1;
+}
+
+.trip-box-menu .action-button {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background: #fff;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+    opacity: 0.75;
+}
+
+.trip-box-menu .action-button:hover {
+    opacity: 1;
+}
+
+.trip-box-thumbnail {
+    /*position: relative;*/
+    height: 50%;
+    background: #cdcdcd;
+    border-bottom: 1px solid #000;
+}
+
+.trip-box-thumbnail img {
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+
+.trip-box-name {
+    margin: 8px 8px 0;
+    font-size: 16px;
+    /*border: 1px dashed #000;*/
+}
+
+.trip-box-owner {
+    margin: 0 8px;
+    font-size: 12px;
+    /*border: 1px dashed #000;*/
+}
+
+.trip-box-description {
+    position: relative;
+    margin: 8px 8px 0;
+    font-size: 12px;
+    line-height: 16px;
+    max-height: 64px;
+    overflow: hidden;
+    /*border: 1px dashed #000;*/
+}
+
+.trip-box-description:before {
+    content:'';
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    background:linear-gradient(transparent 36px, white);
+}
+
+.trip-box-route {
+    margin: 8px 8px;
+    border: 1px dashed #000;
+}
+
+#trip-box-new {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    background: rgb(55, 55, 55);
+    text-align: center;
+    border: 2px solid #000;
+    border-radius: inherit;
+}
+
+#trip-box-new:hover {
+    background: rgb(80, 80, 80);
+}
+
+.trip-box-slot {
+    width: 100%;
+    height: 100%;
+    background: rgba(155, 155, 155, 0.25);
+    border: 1px dashed #000;
+    border-radius: inherit;
+    opacity: 0.25;
+}

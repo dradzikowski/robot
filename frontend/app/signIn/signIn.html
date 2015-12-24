@@ -1,0 +1,21 @@
+<div class="container-fluid" ng-controller="SignInController">
+    <div class="row">
+        <div class="col-sm-3" style="position:fixed;right:0;background-color:#e6e6e6;height:100%;width:100%;max-width:320px;min-width:256px;float:right;">
+            <div class="alert alert-danger" ng-if="error">{{ error }}</div>
+            <h2>Sign in</h2>
+            <form role="form" id="signInForm" method="post" ng-submit="signIn()">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" ng-model="username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" ng-model="password">
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox"> Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <p><a href="#/signUp">Sign up</a> if you haven't yet</p>
+        </div>
+    </div>
+</div>

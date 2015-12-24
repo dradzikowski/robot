@@ -1,0 +1,19 @@
+<div class="container-fluid" ng-controller="SignUpController">
+    <div class="row">
+        <div class="col-sm-3" style="position:fixed;right:0;background-color:#e6e6e6;height:100%;width:100%;max-width:320px;min-width:256px;float:right;padding:0 16px 16px;">
+            <h2>Sign up</h2>
+            <form role="form" id="signUpForm" method="post" ng-submit="signUp()">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" ng-model="username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" ng-model="password">
+                </div>
+                <div ng-show="message" class="form-group alert alert-danger fade in">
+                    {{message}}
+                </div>
+                <button type="submit" class="btn btn-default">Register</button>
+            </form>
+        </div>
+    </div>
+</div>

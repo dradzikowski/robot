@@ -59,3 +59,13 @@ docs/_build/
 
 # PyBuilder
 target/
+
+
+#angular
+logs/*
+!.gitkeep
+node_modules/
+bower_components/
+tmp
+.DS_Store
+.idea
