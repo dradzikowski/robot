@@ -1,5 +1,6 @@
 from pymongo import MongoClient
-from backend.robot import settings
+from crawler import settings
+
 
 class MongoDBClient(object):
     def __init__(self, collection):

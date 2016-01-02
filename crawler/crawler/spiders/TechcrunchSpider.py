@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-import string
-import scrapy
-from scrapy.linkextractors.sgml import SgmlLinkExtractor
-from scrapy.linkextractors import LinkExtractor
-from scrapy.spiders import Rule, CrawlSpider
-from db import MongoDBClient
 from datetime import datetime, date
 
+from crawler.db import MongoDBClient
+from scrapy.linkextractors import LinkExtractor
+from scrapy.spiders import Rule, CrawlSpider
 
 class TechcrunchSpider(CrawlSpider):
     db = MongoDBClient('techcrunch')
@@ -52,9 +49,6 @@ class TechcrunchSpider(CrawlSpider):
                              "url": url,
                              "keywords": extract,
                              "art_date": art_date.extract()})
-
-    def insertKeyValue(self, key, value):
-        self.db.collection.insert_one({key: value})
 
     def insertJson(self, data):
         self.db.collection.insert_one(data)

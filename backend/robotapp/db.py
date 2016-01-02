@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-
 from robot import settings
 
 
