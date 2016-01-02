@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#">robot</a>
+            <a class="navbar-brand" href="#">Robot app</a>
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -24,23 +24,32 @@
     </div>
 </nav>
 
-
 <div class="container" ng-controller="MainController" style="text-align: center;">
-    <div class="col-sm-3">
-        <div class="row" style="text-align: left;">
-            <!--Key:<br>
-            <input type="text" ng-model="key"><br>-->
-            Keyword:<br>
-            <input type="text" ng-model="value">
-            <br><br>
-            <button ng-click="getstatistics()">Search</button>
-        </div>
+    <div class="col-sm-6">
+            <div class="row" style="text-align: left; width: 80%">
+                <!--Key:<br>
+                <input type="text" ng-model="key"><br>-->
+                Keyword:<br>
+                <tags-input type="text" ng-model="value"
+                            placeholder="Add a keyword"
+                            replace-spaces-with-dashes="false"
+                            add-on-space="true"
+                            add-on-enter="true"
+                            add-on-paste="true">
+                </tags-input>
+                <br><br>
+                <button ng-click="getstatistics()">Search</button>
+            </div>
     </div>
     <div class="col-sm-6">
         <div class="row" style="text-align: left;">
             <p>Keyword to be searched: {{value}}</p>
             <p>Articles found: </p>
-            <p  ng-repeat="url in result.urls track by $index"><a href="{{url}}">{{url}}</a></p>
+            <p ng-show="loading == true"><img src="http://www.visitsheboygancounty.com/wp-content/plugins/riva-slider-pro/images/loading/horizontal_fountain.gif"></p>
+            <p ng-hide="loading == true" ng-repeat="url in result.urls track by $index"><a href="{{url}}">{{url}}</a></p>
+            <!--<canvas id="bar" class="chart chart-bar"
+              chart-data="data" chart-labels="labels"> chart-series="series"
+            </canvas>-->
         </div>
     </div>
 </div>
