@@ -147,3 +147,6 @@ LOGGING = {
         }
     },
 }
+
+MONGODB_URI = 'mongodb://admin:admin@ds061454.mongolab.com:61454/robot'
+MONGODB_DBNAME = 'robot'

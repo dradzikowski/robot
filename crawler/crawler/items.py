@@ -7,6 +7,6 @@
 
 from scrapy.item import Item, Field
 
-class CraigslistSampleItem(Item):
+class TechcrunchSampleItem(Item):
     title = Field()
     link = Field()

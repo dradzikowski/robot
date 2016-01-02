@@ -6,6 +6,6 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class CraigslistSamplePipeline(object):
+class TechncrunchSamplePipeline(object):
     def process_item(self, item, spider):
         return item
