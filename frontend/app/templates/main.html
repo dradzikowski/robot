@@ -44,12 +44,17 @@
     <div class="col-sm-6">
         <div class="row" style="text-align: left;">
             <p>Keyword to be searched: <span ng-repeat="val in value track by $index">{{val.text}}, </span></p>
-            <p>Articles found: </p>
+            <p>Occurences found: </p>
             <p ng-show="loading == true"><img src="http://www.visitsheboygancounty.com/wp-content/plugins/riva-slider-pro/images/loading/horizontal_fountain.gif"></p>
             <p ng-hide="loading == true" ng-repeat="url in result.urls track by $index"><a href="{{url}}">{{url}}</a></p>
-            <!--<canvas id="bar" class="chart chart-bar"
-              chart-data="data" chart-labels="labels"> chart-series="series"
-            </canvas>-->
+
+
+            <canvas id="line" class="chart chart-line" chart-data="data"
+              chart-labels="labels" chart-legend="true" chart-series="series"
+              chart-click="onClick" >
+            </canvas>
+
+
         </div>
     </div>
 </div>

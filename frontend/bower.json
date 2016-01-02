@@ -15,6 +15,7 @@
     "bootstrap": "~3.3.6",
     "lodash": "3.10.1",
     "ngstorage": "~0.3.10",
-    "angular-chart.js": "~0.8.8"
+    "angular-chart.js": "~0.8.8",
+    "Chart.js": "~1.0.2"
   }
 }

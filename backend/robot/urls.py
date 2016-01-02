@@ -21,11 +21,11 @@ urlpatterns = [
 ]
 """
 from django.conf.urls import *
-from robotapp.views import insert, find, index
+from robotapp.views import insert, findByKeywords, index
 
 urlpatterns = patterns('',
     url(r'^docs/', include('rest_framework_swagger.urls')),
     (r'^insert/$', insert),
-    (r'^find/$', find),
+    (r'^findByKeywords/$', findByKeywords),
     (r'^/$', index),
 )

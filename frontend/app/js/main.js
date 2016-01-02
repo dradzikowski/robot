@@ -1,4 +1,4 @@
-angular.module('main', ['ngTagsInput'])//, 'chart.js'
+angular.module('main', ['chart.js', 'ngTagsInput'])
 
     .config(function () {
     })
@@ -9,8 +9,8 @@ angular.module('main', ['ngTagsInput'])//, 'chart.js'
                 //key = $scope.key;
                 //value = $scope.value;
                 $scope.loading = true;
-                data = {"key": "keywords", "value": $scope.value[0].value};
-                mainService.getstatistics(data, function (res) {
+                //data = {"key": "keywords", "value": $scope.value[0].value};
+                mainService.getstatistics($scope.value, function (res) {
                     $scope.result = res.data;
                     $scope.loading = false;
                     console.log(res);
@@ -19,13 +19,15 @@ angular.module('main', ['ngTagsInput'])//, 'chart.js'
                 })
             };
 
-            /*
-            $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-            $scope.series = ['Series A', 'Series B'];
-            $scope.data = [
+              $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+              $scope.series = ['Series A', 'Series B'];
+              $scope.data = [
                 [65, 59, 80, 81, 56, 55, 40],
                 [28, 48, 40, 19, 86, 27, 90]
-            ];*/
+              ];
+              $scope.onClick = function (points, evt) {
+                console.log(points, evt);
+              };
 
         }])
     .service('MainService', ['$http', function ($http) {
@@ -34,11 +36,19 @@ angular.module('main', ['ngTagsInput'])//, 'chart.js'
         return {
             getstatistics: function (data, success, error) {
                 //$http.post(baseUrl + '/find').then(success, error);
+
+                var keywords = [];
+                angular.forEach(data, function(obj) {
+                  this.push(obj.text);
+                }, keywords);
+
+                var keywordsObj = {"keywords":keywords};
+
                 $http({
                     method: 'POST',
-                    url: baseUrl + '/find/',
-                    data: $.param(data),
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    url: baseUrl + '/findByKeywords/',
+                    data: keywordsObj,
+                    headers: {'Content-Type': 'application/json'}
                 }).then(success, error);
             }
         };

@@ -29,27 +29,28 @@ class CragispiderSpider(CrawlSpider):
     #   self.insert(self.generate_date_key(), title.extract().split())
 
     def parse_1(self, response):
-        titles = response.selector.xpath("//div[contains(@class, 'article-entry')]")
-        for title in titles:
-            #title.xpath('//p').extract()
-            self.print_sep()
-            #print title.extract().split()
+        art_date = response.selector.xpath("//div[contains(@class, 'title-left')]//time/@datetime")
+        title = response.selector.xpath("//header[contains(@class, 'article-header')]//h1/text()")
+        articles = response.selector.xpath("//div[contains(@class, 'article-entry')]")
+        for article in articles:
+            #date crawled
             dt = datetime.now()
-
-            #self.insertKeyValue(str(date(dt.year, dt.month, dt.day)), title.extract().split())
-
             date_crawled = str(date(dt.year, dt.month, dt.day))
-            extract = title.extract().split()
+
+            #keywords
+            extract = self.html_decode(article.extract()).split()
+
+            #url
             url = str(response.url)
 
-            self.insertJson({"date":date_crawled, "url": url, "keywords": extract})
-            #self.print_sep()
+            #title
+            title = self.html_decode(title.extract()[0])
 
-    def generate_date_key(self):
-        return string.replace(str(datetime.now()), '.', ':')
-
-    def make_key(self, to_be_key):
-        return string.replace(str(to_be_key), '.', ':')
+            self.insertJson({"date_crawled":date_crawled,
+                             "title":title,
+                             "url": url,
+                             "keywords": extract,
+                             "art_date":art_date.extract()})
 
     def insertKeyValue(self, key, value):
         self.db.collection.insert_one({key: value})
@@ -57,8 +58,21 @@ class CragispiderSpider(CrawlSpider):
     def insertJson(self, data):
         self.db.collection.insert_one(data)
 
-    def print_sep(self):
-        print "___________________________________________________________________________"
+    def html_decode(self, s):
+        """
+        Returns the ASCII decoded version of the given HTML string. This does
+        NOT remove normal HTML tags like <p>.
+        """
+        htmlCodes = (
+                ("'", '&#39;'),
+                ('"', '&quot;'),
+                ('>', '&gt;'),
+                ('<', '&lt;'),
+                ('&', '&amp;'),
+                ('"', '\u201d'),
+                ('\'', '\u2019'),
 
-    # titles.xpath("a/text()").extract()
-    # titles.xpath("a/@href").extract()
+            )
+        for code in htmlCodes:
+            s = s.replace(code[1], code[0])
+        return s
