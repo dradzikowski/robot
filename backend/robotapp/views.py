@@ -25,7 +25,7 @@ def findByKeywords(request):
     #todo: add strategies - exact match and regex match;
     keywords = []
     for keyword in requestBody['keywords']:
-        keywords.append({"keywords":{ '$regex' : '/.*'+keyword+'.*/'}})
+        keywords.append({"keywords":{ '$regex' : '.*'+keyword+'.*'}})
 
     logging.warning(keywords)
 

@@ -24,8 +24,6 @@ class TechcrunchSpider(CrawlSpider):
             print title.xpath('@data-sharetitle').extract()
             self.print_sep()
 
-    # self.insert(self.generate_date_key(), title.extract().split())
-
     def parse_1(self, response):
         art_date = response.selector.xpath("//div[contains(@class, 'title-left')]//time/@datetime")
         title = response.selector.xpath("//header[contains(@class, 'article-header')]//h1/text()")
@@ -36,6 +34,7 @@ class TechcrunchSpider(CrawlSpider):
             date_crawled = str(date(dt.year, dt.month, dt.day))
 
             # keywords
+            #TODO: better text extracting
             extract = self.html_decode(article.extract()).split()
 
             # url
@@ -44,14 +43,20 @@ class TechcrunchSpider(CrawlSpider):
             # title
             title = self.html_decode(title.extract()[0])
 
-            self.insertJson({"date_crawled": date_crawled,
+            if(self.isArticleUnique(url)):
+                self.insertJson({"date_crawled": date_crawled,
                              "title": title,
                              "url": url,
                              "keywords": extract,
-                             "art_date": art_date.extract()})
+                             "art_date": art_date.extract()[0]})
 
     def insertJson(self, data):
         self.db.collection.insert_one(data)
+
+    def isArticleUnique(self, url):
+        if self.db.collection.find_one({"url": url}): #TODO limit to last 10 arts
+            return False
+        return True
 
     def html_decode(self, s):
         """
