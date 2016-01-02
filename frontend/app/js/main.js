@@ -1,4 +1,4 @@
-angular.module('main', ['ngTagsInput', 'chart.js'])
+angular.module('main', ['ngTagsInput'])//, 'chart.js'
 
     .config(function () {
     })
