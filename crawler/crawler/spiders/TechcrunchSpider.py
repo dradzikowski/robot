@@ -4,7 +4,7 @@ import scrapy
 from scrapy.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule, CrawlSpider
-from crawler.db import MongoDBClient
+from db import MongoDBClient
 from datetime import datetime, date
 
 
