@@ -16,6 +16,7 @@ angular.module('main', ['chart.js', 'ngTagsInput'])
 
                     console.log(res);
 
+                    //TODO clear charts after each search
                     dataForChart = mainService.prepareDataForChart($scope.result);
 
                     console.log(dataForChart);

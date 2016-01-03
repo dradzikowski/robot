@@ -23,6 +23,7 @@ def findByKeywords(request):
     requestBody = json.loads(request.body)
 
     # todo: add strategies - exact match and regex match;
+    # todo: case insensitive
     keywords = []
     for keyword in requestBody['keywords']:
         keywords.append({"keywords": {'$regex': '.*' + keyword + '.*'}})

@@ -25,6 +25,7 @@ class TechcrunchSpider(CrawlSpider):
             self.print_sep()
 
     def parse_1(self, response):
+        #TODO: caching titles not to check in db each time
         art_date = response.selector.xpath("//div[contains(@class, 'title-left')]//time/@datetime")
         title = response.selector.xpath("//header[contains(@class, 'article-header')]//h1/text()")
         articles = response.selector.xpath("//div[contains(@class, 'article-entry')]")
