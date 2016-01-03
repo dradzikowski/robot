@@ -6,7 +6,6 @@ from pymongo import MongoClient
 from rest_framework.decorators import api_view
 import logging
 import json
-
 from robotapp.db import MongoDBClient
 
 
@@ -15,6 +14,7 @@ from robotapp.db import MongoDBClient
 def index(request):
     return render_to_response('index.html')
 
+
 @api_view(["POST"])
 @csrf_exempt
 def findByKeywords(request):
@@ -22,28 +22,33 @@ def findByKeywords(request):
 
     requestBody = json.loads(request.body)
 
-    #todo: add strategies - exact match and regex match;
+    # todo: add strategies - exact match and regex match;
     keywords = []
     for keyword in requestBody['keywords']:
-        keywords.append({"keywords":{ '$regex' : '.*'+keyword+'.*'}})
+        keywords.append({"keywords": {'$regex': '.*' + keyword + '.*'}})
 
+    # temp
     logging.warning(keywords)
 
     projection = {'url': 1, 'title': 1, 'art_date': 1, '_id': 0}
 
-    res = col.find({"$and" : keywords }, projection)
+    res = col.find({"$and": keywords}, projection)
 
     found = []
     for result in res:
-        found.append(result['url'])
+        found.append({
+            "site":"techcrunch",
+            "url": result['url'],
+            "title": result['title'],
+            "art_date": result['art_date'],
+        })
 
-    res = found
     data = dict()
-    data['urls'] = res
-    res = data
-    return JsonResponse(res)
+    data['articles'] = found
+    return JsonResponse(data)
 
-#NOT USED
+
+# NOT USED
 @api_view(["POST"])
 @csrf_exempt
 def insert(request):
@@ -51,6 +56,6 @@ def insert(request):
     client = MongoClient(uri)
     db = client['robot']
     col = db.crawled
-    res = col.insert_one({"name":request.POST['name']})
+    res = col.insert_one({"name": request.POST['name']})
     name = request.POST['name']
     return render_to_response('home.html', locals())

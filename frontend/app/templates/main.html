@@ -46,8 +46,7 @@
             <p>Keyword to be searched: <span ng-repeat="val in value track by $index">{{val.text}}, </span></p>
             <p>Occurences found: </p>
             <p ng-show="loading == true"><img src="http://www.visitsheboygancounty.com/wp-content/plugins/riva-slider-pro/images/loading/horizontal_fountain.gif"></p>
-            <p ng-hide="loading == true" ng-repeat="url in result.urls track by $index"><a href="{{url}}">{{url}}</a></p>
-
+            <p ng-hide="loading == true" ng-repeat="article in result.articles track by $index"><a href="{{article.url}}">{{article.title}}</a></p>
 
             <canvas id="line" class="chart chart-line" chart-data="data"
               chart-labels="labels" chart-legend="true" chart-series="series"

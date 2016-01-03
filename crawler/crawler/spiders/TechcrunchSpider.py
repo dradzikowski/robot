@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, date
-
 from crawler.db import MongoDBClient
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule, CrawlSpider
+
 
 class TechcrunchSpider(CrawlSpider):
     db = MongoDBClient('techcrunch')
@@ -34,27 +34,30 @@ class TechcrunchSpider(CrawlSpider):
             date_crawled = str(date(dt.year, dt.month, dt.day))
 
             # keywords
-            #TODO: better text extracting
+            # TODO: better text extracting
             extract = self.html_decode(article.extract()).split()
 
             # url
             url = str(response.url)
 
             # title
-            title = self.html_decode(title.extract()[0])
+            title = title.extract()[0]
 
-            if(self.isArticleUnique(url)):
+            if (self.isArticleUnique(url)):
                 self.insertJson({"date_crawled": date_crawled,
-                             "title": title,
-                             "url": url,
-                             "keywords": extract,
-                             "art_date": art_date.extract()[0]})
+                                 "title": title,
+                                 "url": url,
+                                 "keywords": extract,
+                                 #for other crawlers
+                                 #datetime.datetime.strptime('2015-12-31', "%Y-%m-%d").date().isoformat()
+                                 "art_date": art_date.extract()[0]
+                                 })
 
     def insertJson(self, data):
         self.db.collection.insert_one(data)
 
     def isArticleUnique(self, url):
-        if self.db.collection.find_one({"url": url}): #TODO limit to last 10 arts
+        if self.db.collection.find_one({"url": url}):  # TODO limit to last 10 arts
             return False
         return True
 
