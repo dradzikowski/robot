@@ -7,6 +7,15 @@ var myApp2 = angular.module('myApp2', []);
 // implicit DI
 myApp2.controller('someCtrl', function ($scope, $rootScope, helloWorld, helloWorldFromFactory, helloWorldFromService,
                                         myService, myFactory, myProv) {
+
+    var baseObj = $rootScope;
+    var derivObj = baseObj.$new();
+    baseObj.a = 'a';
+    derivObj.b = 'b';
+
+    console.log(baseObj);
+    console.log(derivObj);
+
     $scope.hellos = [
         helloWorld.sayHello(),
         helloWorldFromFactory.sayHello(),
@@ -25,7 +34,7 @@ myApp2.controller('someCtrl', function ($scope, $rootScope, helloWorld, helloWor
     }, 2000);
 
     console.log($scope);
-    console.log($rootScope);
+    //console.log($rootScope);
 });
 
 //service style, probably the simplest one
