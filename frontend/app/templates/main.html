@@ -26,33 +26,41 @@
 
 <div class="container" ng-controller="MainController" style="text-align: center;">
     <div class="col-sm-6">
-            <div class="row" style="text-align: left; width: 80%">
-                <!--Key:<br>
-                <input type="text" ng-model="key"><br>-->
-                Keywords:<br>
+        <div class="row" style="text-align: left; width: 80%">
+            <!--Key:<br>
+            <input type="text" ng-model="key"><br>-->
+            <label for="searchKeywords">Email address</label>
+            <fieldset class="form-group">
                 <tags-input type="text" ng-model="value"
                             placeholder="Add a keyword"
                             replace-spaces-with-dashes="false"
                             add-on-space="true"
                             add-on-enter="true"
-                            add-on-paste="true">
-                </tags-input>
-                <br><br>
-                <button ng-click="getstatistics()">Search</button>
-            </div>
+                            add-on-paste="true"
 
-        {{ dupa }}
+                            id="searchKeywords">
+                </tags-input>
+                <small class="text-muted">Enter the keywords you want to search.</small>
+            </fieldset>
+            <button class="btn btn-primary" ng-click="getstatistics()">Search</button>
+        </div>
     </div>
     <div class="col-sm-6">
         <div class="row" style="text-align: left;">
-            <p>Keyword to be searched: <span ng-repeat="val in value track by $index">{{val.text}}, </span></p>
+            <p>Keyword to be searched: <span ng-repeat="val in value track by $index">{{ val.text }}, </span></p>
+
             <p>Occurences found: </p>
-            <p ng-show="loading == true"><img src="http://www.visitsheboygancounty.com/wp-content/plugins/riva-slider-pro/images/loading/horizontal_fountain.gif"></p>
-            <p ng-hide="loading == true" ng-repeat="article in result.articles track by $index"><a href="{{article.url}}">{{article.title}}</a></p>
+
+            <p ng-show="loading == true"><img
+                    src="http://www.visitsheboygancounty.com/wp-content/plugins/riva-slider-pro/images/loading/horizontal_fountain.gif">
+            </p>
+
+            <p ng-hide="loading == true" ng-repeat="article in result.articles track by $index"><a
+                    href="{{ article.url }}">{{ article.title }}</a></p>
 
             <canvas id="line" class="chart chart-line" chart-data="data"
-              chart-labels="labels" chart-legend="true" chart-series="series"
-              chart-click="onClick" >
+                    chart-labels="labels" chart-legend="true" chart-series="series"
+                    chart-click="onClick" chart-options="options">
             </canvas>
 
 

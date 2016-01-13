@@ -2,7 +2,7 @@ angular.module('main', ['chart.js', 'ngTagsInput'])
 
     .config(function () {
     })
-    .controller('MainController', ['$scope', '$filter', 'MainService', '$routeParams','$rootScope',
+    .controller('MainController', ['$scope', '$filter', 'MainService', '$routeParams', '$rootScope',
         function ($scope, $filter, mainService, $routeParams, $rootScope) {
 
             $scope.getstatistics = function () {
@@ -23,6 +23,9 @@ angular.module('main', ['chart.js', 'ngTagsInput'])
                     $scope.labels = dataForChart['labels'];
                     $scope.series = dataForChart['series'];
                     $scope.data = dataForChart['data'];
+                    $scope.options = {
+                        scaleBeginAtZero : true,
+                    };
                     $scope.onClick = function (points, evt) {
                         console.log(points, evt);
                     };
