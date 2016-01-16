@@ -1,4 +1,6 @@
 # Create your views here.
+from collections import defaultdict
+
 from django.http import JsonResponse
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
@@ -24,29 +26,52 @@ def findByKeywords(request):
 
     # todo: add strategies - exact match and regex match;
     # todo: case insensitive
-    keywords = []
-    for keyword in requestBody['keywords']:
-        keywords.append({"keywords": {'$regex': '.*' + keyword + '.*'}})
+    # keywords = []
+    # for keyword in requestBody['keywords']:
+    #    keywords.append({'$or': [{"keyword": keyword}, {"keyword": keyword}]})
+    # keywords.append({"keyword": {'$in': requestBody['keywords']}})
+    # keywords.append({"keywords": {'$regex': '.*' + keyword + '.*'}})
 
-    # temp
+    keywords = {"keyword": {'$in': requestBody['keywords']}}
+    projection = {'keyword': 1, 'references': 1, '_id': 0}
     logging.warning(keywords)
 
-    projection = {'url': 1, 'title': 1, 'art_date': 1, '_id': 0}
+    res = col.find(keywords, projection)
 
-    res = col.find({"$and": keywords}, projection)
+    # TODO indexes
+    found_articles = intersect_articles(res)
+
+    print found_articles
+
+    articles = col.find({'article._id': {'$in': found_articles['references']}})#TODO poprawka
+    # projection = {'url': 1, 'title': 1, 'art_date': 1, '_id': 0}
+
+    print articles
+
+    #print found_articles
+        #print result  # zwracane {} i wywala sie
+#        found.append({
+#            "site": "techcrunch",
+#            "url": result['url'],
+#            "title": result['title'],
+#            "art_date": result['art_date'],
+#        })
 
     found = []
-    for result in res:
-        found.append({
-            "site":"techcrunch",
-            "url": result['url'],
-            "title": result['title'],
-            "art_date": result['art_date'],
-        })
-
-    data = dict()
+    data = dict() #defaultdict(list)#
     data['articles'] = found
     return JsonResponse(data)
+
+
+def intersect_articles(res):
+    last_result = None
+    for result in res:
+        current_result = result
+        if last_result is not None and last_result != current_result:
+            last_result = list(set(last_result['references']).intersection(current_result['references']))
+        else:
+            last_result = current_result
+    return last_result
 
 
 # NOT USED
