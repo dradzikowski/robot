@@ -6,7 +6,7 @@ from pymongo import ReturnDocument
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule, CrawlSpider
 
-
+#TODO DIFFER COLLECTIONS
 class TechcrunchSpider(CrawlSpider):
     db = MongoDBClient('techcrunch')
     name = "techcrunch"
@@ -54,10 +54,9 @@ class TechcrunchSpider(CrawlSpider):
             _id = self.insertJson({"date_crawled": date_crawled,
                                    "title": title,
                                    "url": url,
-                                   # "keywords": extract,
                                    # for other crawlers
                                    # datetime.datetime.strptime('2015-12-31', "%Y-%m-%d").date().isoformat()
-                                   # "art_date": art_date.extract()[0]
+                                   #"art_date": art_date.extract()[0]
                                    })
 
             # TODO optimise

@@ -1,6 +1,7 @@
 # Create your views here.
 from collections import defaultdict
 
+from bson import ObjectId
 from django.http import JsonResponse
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
@@ -41,14 +42,25 @@ def findByKeywords(request):
     # TODO indexes
     found_articles = intersect_articles(res)
 
-    print found_articles
+    objectIds = []
+    if found_articles is not None:
+        for found_article in found_articles['references']:
+            objectIds.append(ObjectId(found_article))
 
-    articles = col.find({'article._id': {'$in': found_articles['references']}})#TODO poprawka
+    articles = col.find({'_id': {'$in': objectIds}})
     # projection = {'url': 1, 'title': 1, 'art_date': 1, '_id': 0}
 
-    print articles
+    #logging.warning("ARTICLES FOUND")
 
-    #print found_articles
+    data = defaultdict(list)
+
+    for article in articles:
+        article['site'] = "techcruch"
+        article['_id'] = str(article['_id'])
+        data['articles'].append(article)
+        #logging.warning(article)
+
+
         #print result  # zwracane {} i wywala sie
 #        found.append({
 #            "site": "techcrunch",
@@ -57,9 +69,6 @@ def findByKeywords(request):
 #            "art_date": result['art_date'],
 #        })
 
-    found = []
-    data = dict() #defaultdict(list)#
-    data['articles'] = found
     return JsonResponse(data)
 
 
