@@ -39,12 +39,19 @@ def findByKeywords(request):
 
     res = col.find(keywords, projection)
 
-    # TODO indexes
-    found_articles = intersect_articles(res)
+    #logging.warning("Before intersection:")
+    #for r in res:
+    #    logging.warning(r)
+
+    articles_count = len(requestBody['keywords'])
+    # TODO indexes!!!!!!!!!!!!!
+    found_articles = intersect_articles(res, articles_count)
+    logging.warning("After intersection:")
+    logging.warning(found_articles)
 
     objectIds = []
     if found_articles is not None:
-        for found_article in found_articles['references']:
+        for found_article in found_articles:#gdy jedno znalezione,a drugie nie, zwraca normalnie jedno slowo, bez intersekcji
             objectIds.append(ObjectId(found_article))
 
     articles = col.find({'_id': {'$in': objectIds}})
@@ -71,15 +78,28 @@ def findByKeywords(request):
 
     return JsonResponse(data)
 
+#chyba cos pojebalem - liczba artykulow vs liczba stron z artykulami, a moze i nie?
+def intersect_articles(res, keywords_count):
+    if res.count() != keywords_count:
+        logging.warning("No results found for at least on of the keywords")
+        return []
+    if keywords_count == 1:
+        logging.warning("Searched for only one keyword, intersection does not occur")
+        return res[0]['references']
 
-def intersect_articles(res):
+    logging.warning("Starting intersection...")
     last_result = None
     for result in res:
         current_result = result
+        logging.warning('Processed result:')
+        logging.warning(current_result)
         if last_result is not None and last_result != current_result:
             last_result = list(set(last_result['references']).intersection(current_result['references']))
+            #last_result = list(set(last_result['references']).intersection(current_result['references']))
+            #bo juz nie ma references? moze wycofac te zmieny?
         else:
             last_result = current_result
+    logging.warning("Ending intersection...")
     return last_result
 
 
