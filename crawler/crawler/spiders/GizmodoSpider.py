@@ -8,7 +8,7 @@ from pymongo import ReturnDocument
 from scrapy import Request
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule, CrawlSpider
-
+import re
 
 class GizmodoSpider(CrawlSpider):
     # database connections
@@ -46,14 +46,18 @@ class GizmodoSpider(CrawlSpider):
                                        })
 
             for article_content in article_contents.extract():
-                for word in article_content.split():
+                article_content = re.sub(r'\W+', '&', article_content)
+                for word in article_content.split('&'):
+                    word = word.lower()
                     if str(_id) not in self.crawled_keywords[word]:
                         self.crawled_keywords[word].append(str(_id))
 
     # indexing
     def closed(self, reason):
+        indexing_status = 0;
+        indexing_status_percent = 0;
+        prev_indexing_status_percent = 0;
         for keyword, references in self.crawled_keywords.iteritems():
-            # trim commas and dots
             self.keywords_collection.find_one_and_update(
                 {"keyword": keyword},
                 {"$push": {"references": {'$each': references}}},
@@ -61,6 +65,13 @@ class GizmodoSpider(CrawlSpider):
                 upsert=True,
                 return_document=ReturnDocument.AFTER
             )
+
+            indexing_status += 1;
+            indexing_status_percent = (indexing_status * 100 / len(self.crawled_keywords))
+            if indexing_status_percent % 5 == 0 and prev_indexing_status_percent != indexing_status_percent:
+                prev_indexing_status_percent = indexing_status_percent
+                print 'Indexing: ' + str(indexing_status_percent) + '%'
+                print 'Status: ' + str(indexing_status) + ' out of ' + str(len(self.crawled_keywords)) + ' words'
 
     def is_article_unique(self, url):
         if self.articles_collection.find_one({"url": url}):

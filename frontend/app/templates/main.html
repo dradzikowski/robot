@@ -26,7 +26,7 @@
 
 <div class="container" ng-controller="MainController" style="text-align: center;">
     <!-- KEYWORDS SEARCH INPUT -->
-    <div class="col-sm-6">
+    <div class="col-sm-5">
         <div class="row" style="text-align: left; width: 80%">
             <h3>Enter keywords</h3>
             <fieldset class="form-group">
@@ -45,13 +45,13 @@
     </div>
     <!-- ARTICLES FOUND-->
     <!--TODO if not found, reset all, arts list and charts-->
-    <div class="col-sm-6">
+    <div class="col-sm-7">
         <div class="row" style="text-align: left;">
                 <h3>Articles found <span ng-show="loading == false" class="label label-default">{{totalItems}}</span></h3>
                 <section class="main" ng-show="loading == false">
                     <div ng-repeat="article in filteredItems">
                         <a href="{{ article.url }}">
-                            <img class="site-ico" ng-src="../app/img/techcrunch.png"/> {{ article.title }}
+                            <img class="site-ico" ng-src="../app/img/{{  article.site }}.png"/> {{ article.title }}
                         </a>
                     </div>
                     <pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage"

@@ -5,6 +5,7 @@ from crawler.db import MongoDBNoCollectionClient
 from pymongo import ReturnDocument
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule, CrawlSpider
+import re
 
 
 class TheNextWebSpider(CrawlSpider):
@@ -42,14 +43,15 @@ class TheNextWebSpider(CrawlSpider):
                                        })
 
             for article_content in article_contents.extract():
-                for word in article_content.split():
+                article_content = re.sub(r'\W+', '&', article_content)
+                for word in article_content.split('&'):
+                    word = word.lower()
                     if str(_id) not in self.crawled_keywords[word]:
                         self.crawled_keywords[word].append(str(_id))
 
     # indexing
     def closed(self, reason):
         for keyword, references in self.crawled_keywords.iteritems():
-            # trim commas and dots
             self.keywords_collection.find_one_and_update(
                 {"keyword": keyword},
                 {"$push": {"references": {'$each': references}}},

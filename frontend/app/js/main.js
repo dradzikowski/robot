@@ -80,29 +80,45 @@ angular.module('main', ['chart.js', 'ngTagsInput', 'ngResource', 'ui.bootstrap']
     }]).factory('Utils', ['$filter', function ($filter) {
     return {
         prepareDataForChart: function (result) {
-            var siteSeries = ['TechCrunch'];
+            var siteSeries = ['TechCrunch', 'The Next Web', 'Gizmodo'];
             var dateLabels = [];
-            var occurencesData = [];
-            var chartData = {};
+            // TODO replace with arrays!!!!!
+            var occurencesTechCrunchData = [];
+            var occurencesTheNextWebData = [];
+            var occurencesGizmodoData = [];
+            var chartDataTechCrunch = {};
+            var chartDataTheNextWeb = {};
+            var chartDataGizmodo = {};
 
             var dates = this.spanDates();
 
             dates.forEach(function (date) {
-                chartData[date] = 0;
+                chartDataTechCrunch[date] = 0;
+                chartDataTheNextWeb[date] = 0;
+                chartDataGizmodo[date] = 0;
             });
 
             //TODO date_crawled is not exactly the date I want
             result['articles'].forEach(function (entry) {
-                chartData[entry.date_crawled] += 1;
+                if(entry.site == 'techcrunch')
+                    chartDataTechCrunch[entry.date_crawled] += 1;
+                else if(entry.site == 'thenextweb')
+                    chartDataTheNextWeb[entry.date_crawled] += 1;
+                else if(entry.site == 'gizmodo')
+                    chartDataGizmodo[entry.date_crawled] += 1;
             });
 
             dates.forEach(function (val) {
                 dateLabels.push(val);
-                occurencesData.push(chartData[val]);
+                occurencesTechCrunchData.push(chartDataTechCrunch[val]);
+                occurencesTheNextWebData.push(chartDataTheNextWeb[val]);
+                occurencesGizmodoData.push(chartDataGizmodo[val]);
             });
 
             var occurencesDataArray = [];
-            occurencesDataArray.push(occurencesData);
+            occurencesDataArray.push(occurencesTechCrunchData);
+            occurencesDataArray.push(occurencesTheNextWebData);
+            occurencesDataArray.push(occurencesGizmodoData);
 
             dataForChart = {};
             dataForChart['labels'] = dateLabels;
@@ -116,7 +132,7 @@ angular.module('main', ['chart.js', 'ngTagsInput', 'ngResource', 'ui.bootstrap']
         spanDates: function () {
             var dateToday = new Date();
             var datePointer = new Date();
-            datePointer.setMonth(datePointer.getMonth() - 1);
+            datePointer.setDate(datePointer.getDate() - 7);
 
             dates = [];
 
