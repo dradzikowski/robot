@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-fixed">
     <div class="container-fluid" ng-controller="IdentityController">
 
         <div class="navbar-header">
@@ -13,11 +13,11 @@
 
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-if="!username"><a href="#/signIn"><span class="glyphicon glyphicon-log-in"></span> Sign in</a>
+                <li ng-if="username"><a href="#"><span class="glyphicon glyphicon-user"></span> username</a></li>
+                <li ng-if="!username"><a href="#/signIn"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                 </li>
-                <li ng-if="username"><a href="#/signIn"><span class="glyphicon glyphicon-log-in"></span> Sign out</a>
+                <li ng-if="username"><a href="#/signIn"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
                 </li>
-                <li ng-if="username"><a href="#"><span class="glyphicon glyphicon-user"></span>username</a></li>
             </ul>
         </div>
 
@@ -25,49 +25,57 @@
 </nav>
 
 <div class="container" ng-controller="MainController" style="text-align: center;">
-    <div class="col-sm-6">
-            <div class="row" style="text-align: left; width: 80%">
-                <!--Key:<br>
-                <input type="text" ng-model="key"><br>-->
-                Keywords:<br>
+    <!-- KEYWORDS SEARCH INPUT -->
+    <div class="col-sm-5">
+        <div class="row" style="text-align: left; width: 80%">
+            <h3>Enter keywords</h3>
+            <fieldset class="form-group">
                 <tags-input type="text" ng-model="value"
                             placeholder="Add a keyword"
                             replace-spaces-with-dashes="false"
                             add-on-space="true"
                             add-on-enter="true"
-                            add-on-paste="true">
+                            add-on-paste="true"
+                            id="searchKeywords">
                 </tags-input>
-                <br><br>
-                <button ng-click="getstatistics()">Search</button>
-            </div>
-
-        {{ dupa }}
+                <small class="text-muted">Enter the keywords you want to search.</small>
+            </fieldset>
+            <button class="btn btn-primary" ng-click="getstatistics()">Search</button>
+        </div>
     </div>
-    <div class="col-sm-6">
+    <!-- ARTICLES FOUND-->
+    <!--TODO if not found, reset all, arts list and charts-->
+    <div class="col-sm-7">
         <div class="row" style="text-align: left;">
-            <p>Keyword to be searched: <span ng-repeat="val in value track by $index">{{val.text}}, </span></p>
-            <p>Occurences found: </p>
-            <p ng-show="loading == true"><img src="http://www.visitsheboygancounty.com/wp-content/plugins/riva-slider-pro/images/loading/horizontal_fountain.gif"></p>
-            <p ng-hide="loading == true" ng-repeat="article in result.articles track by $index"><a href="{{article.url}}">{{article.title}}</a></p>
+                <h3>Articles found <span ng-show="loading == false" class="label label-default">{{totalItems}}</span></h3>
+                <section class="main" ng-show="loading == false">
+                    <div ng-repeat="article in filteredItems">
+                        <a href="{{ article.url }}">
+                            <img class="site-ico" ng-src="../app/img/{{  article.site }}.png"/> {{ article.title }}
+                        </a>
+                    </div>
+                    <pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage"
+                                ng-change="pageChanged()"></pagination>
+                </section>
 
-            <canvas id="line" class="chart chart-line" chart-data="data"
-              chart-labels="labels" chart-legend="true" chart-series="series"
-              chart-click="onClick" >
-            </canvas>
-
+            <p ng-show="loading == true"><img
+                    src="http://www.visitsheboygancounty.com/wp-content/plugins/riva-slider-pro/images/loading/horizontal_fountain.gif">
+            </p>
 
         </div>
+    </div>
+    <!-- CHART RESULTS-->
+    <div class="col-sm-12">
+        <h3 ng-show="loading == false">Results for the last month</h3>
+        <canvas ng-hide="loading == true" id="line" class="chart chart-line" chart-data="data"
+                chart-labels="labels" chart-legend="true" chart-series="series"
+                chart-click="onClick" chart-options="options">
+        </canvas>
     </div>
 </div>
 
 <!-- Footer -->
-<hr style="border-color: #cdcdcd;">
+<hr style="border-color: #34495e;">
 <div class="container" style="text-align:center;">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac
-        neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique,
-        tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit
-        amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam
-        mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a
-        aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra.
-        Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.</p>
+    <p>Daniel Radzikowski @ 2016 All rights reserved.</p>
 </div>

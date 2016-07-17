@@ -1,0 +1,266 @@
+------------- crawling techcrunch begins --------------
+Fri Jan 29 14:06:16 CET 2016
+### Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+### Activated venv
+### Starting scraping
+### Scraping ended
+Fri Jan 29 14:06:16 CET 2016
+------------- crawling techcrunch ends --------------
+------------- crawling techcrunch begins --------------
+Fri Jan 29 14:06:54 CET 2016
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+--- Scraping ended
+Fri Jan 29 14:06:54 CET 2016
+------------- crawling techcrunch ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+--- Scraping ended
+Fri Jan 29 14:24:32 CET 2016
+------------- crawling techcrunch ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+Indexing: 5%
+Status: 14 out of 280 words
+Indexing: 10%
+Status: 28 out of 280 words
+Indexing: 15%
+Status: 42 out of 280 words
+Indexing: 20%
+Status: 56 out of 280 words
+Indexing: 25%
+Status: 70 out of 280 words
+Indexing: 30%
+Status: 84 out of 280 words
+Indexing: 35%
+Status: 98 out of 280 words
+Indexing: 40%
+Status: 112 out of 280 words
+Indexing: 45%
+Status: 126 out of 280 words
+Indexing: 50%
+Status: 140 out of 280 words
+Indexing: 55%
+Status: 154 out of 280 words
+Indexing: 60%
+Status: 168 out of 280 words
+Indexing: 65%
+Status: 182 out of 280 words
+Indexing: 70%
+Status: 196 out of 280 words
+Indexing: 75%
+Status: 210 out of 280 words
+Indexing: 80%
+Status: 224 out of 280 words
+Indexing: 85%
+Status: 238 out of 280 words
+Indexing: 90%
+Status: 252 out of 280 words
+Indexing: 95%
+Status: 266 out of 280 words
+Indexing: 100%
+Status: 280 out of 280 words
+--- Scraping ended
+Fri Jan 29 14:30:46 CET 2016
+------------- crawling gizmodo ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+--- Scraping ended
+Fri Jan 29 15:05:34 CET 2016
+------------- crawling thenextweb ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+--- Scraping ended
+Fri Jan 29 15:15:05 CET 2016
+------------- crawling techcrunch ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+Indexing: 5%
+Status: 10 out of 181 words
+Indexing: 10%
+Status: 19 out of 181 words
+Indexing: 15%
+Status: 28 out of 181 words
+Indexing: 20%
+Status: 37 out of 181 words
+Indexing: 25%
+Status: 46 out of 181 words
+Indexing: 30%
+Status: 55 out of 181 words
+Indexing: 35%
+Status: 64 out of 181 words
+Indexing: 40%
+Status: 73 out of 181 words
+Indexing: 45%
+Status: 82 out of 181 words
+Indexing: 50%
+Status: 91 out of 181 words
+Indexing: 55%
+Status: 100 out of 181 words
+Indexing: 60%
+Status: 109 out of 181 words
+Indexing: 65%
+Status: 118 out of 181 words
+Indexing: 70%
+Status: 127 out of 181 words
+Indexing: 75%
+Status: 136 out of 181 words
+Indexing: 80%
+Status: 145 out of 181 words
+Indexing: 85%
+Status: 154 out of 181 words
+Indexing: 90%
+Status: 163 out of 181 words
+Indexing: 95%
+Status: 172 out of 181 words
+Indexing: 100%
+Status: 181 out of 181 words
+--- Scraping ended
+Fri Jan 29 15:30:42 CET 2016
+------------- crawling gizmodo ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+--- Scraping ended
+Fri Jan 29 15:47:24 CET 2016
+------------- crawling thenextweb ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+--- Scraping ended
+Fri Jan 29 16:16:10 CET 2016
+------------- crawling techcrunch ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+Indexing: 5%
+Status: 30 out of 588 words
+Indexing: 10%
+Status: 59 out of 588 words
+Indexing: 15%
+Status: 89 out of 588 words
+Indexing: 20%
+Status: 118 out of 588 words
+Indexing: 25%
+Status: 147 out of 588 words
+Indexing: 30%
+Status: 177 out of 588 words
+Indexing: 35%
+Status: 206 out of 588 words
+Indexing: 40%
+Status: 236 out of 588 words
+Indexing: 45%
+Status: 265 out of 588 words
+Indexing: 50%
+Status: 294 out of 588 words
+Indexing: 55%
+Status: 324 out of 588 words
+Indexing: 60%
+Status: 353 out of 588 words
+Indexing: 65%
+Status: 383 out of 588 words
+Indexing: 70%
+Status: 412 out of 588 words
+Indexing: 75%
+Status: 441 out of 588 words
+Indexing: 80%
+Status: 471 out of 588 words
+Indexing: 85%
+Status: 500 out of 588 words
+Indexing: 90%
+Status: 530 out of 588 words
+Indexing: 95%
+Status: 559 out of 588 words
+Indexing: 100%
+Status: 588 out of 588 words
+--- Scraping ended
+Fri Jan 29 16:32:24 CET 2016
+------------- crawling gizmodo ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+--- Scraping ended
+Fri Jan 29 16:48:43 CET 2016
+------------- crawling thenextweb ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+--- Scraping ended
+Fri Jan 29 17:16:09 CET 2016
+------------- crawling techcrunch ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+Indexing: 5%
+Status: 13 out of 245 words
+Indexing: 10%
+Status: 25 out of 245 words
+Indexing: 15%
+Status: 37 out of 245 words
+Indexing: 20%
+Status: 49 out of 245 words
+Indexing: 25%
+Status: 62 out of 245 words
+Indexing: 30%
+Status: 74 out of 245 words
+Indexing: 35%
+Status: 86 out of 245 words
+Indexing: 40%
+Status: 98 out of 245 words
+Indexing: 45%
+Status: 111 out of 245 words
+Indexing: 50%
+Status: 123 out of 245 words
+Indexing: 55%
+Status: 135 out of 245 words
+Indexing: 60%
+Status: 147 out of 245 words
+Indexing: 65%
+Status: 160 out of 245 words
+Indexing: 70%
+Status: 172 out of 245 words
+Indexing: 75%
+Status: 184 out of 245 words
+Indexing: 80%
+Status: 196 out of 245 words
+Indexing: 85%
+Status: 209 out of 245 words
+Indexing: 90%
+Status: 221 out of 245 words
+Indexing: 95%
+Status: 233 out of 245 words
+Indexing: 100%
+Status: 245 out of 245 words
+--- Scraping ended
+Fri Jan 29 17:30:44 CET 2016
+------------- crawling gizmodo ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
+--- Scraping ended
+Fri Jan 29 17:45:54 CET 2016
+------------- crawling thenextweb ends --------------
+--- Changed dir:
+/home/dradzikowski/Projects/robot/crawler
+--- Activated venv
+--- Starting scraping
